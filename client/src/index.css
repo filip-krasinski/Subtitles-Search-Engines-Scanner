@@ -1,0 +1,172 @@
+:root {
+  --bg-primary: #090C11;
+  --bg-secondary: #0D1017;
+  --bg-quaternary: #0f1218;
+  --outline-color: #34373E;
+  --button-color: #d3394c;
+  --button-hover-color: #722040;
+  --text-color: #c9d1d9;
+}
+
+
+body, #root {
+  margin: 0;
+  background-color: var(--bg-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  font-size: 22px;
+  height: 100vh;
+}
+
+
+.flex-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flex-item {
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+}
+
+
+table {
+  border: 1px solid var(--outline-color);
+  color: var(--text-color);
+  text-align: center;
+}
+
+thead {
+  font-weight : bold;
+}
+
+th, td {
+  width: auto;
+  padding:5px;
+}
+
+thead tr {
+  background-color: var(--bg-secondary);
+}
+
+
+tr {
+  background-color: var(--bg-quaternary);
+}
+
+.wrapper {
+  min-height : 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  max-width: 80%;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.625rem 1.25rem;
+}
+
+.no-js .inputfile + label {
+  display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  margin-right: 0.25em;
+}
+
+.inputfile + label {
+  color: #f1e5e6;
+  background-color: var(--button-color);
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label,
+.inputfile + label:hover {
+  background-color: var(--button-hover-color);
+}
+
+
+
+
+
+
+
+/* Language Input */
+
+.select-btn-streaming {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+}
+
+select {
+  padding: 0.8em 0.5em;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Register */
+.button_register input {
+  display: block;
+  margin-top:  20px;
+  width: 100%;
+  max-width: 30% !important;
+  height: 50px;
+  color: white;
+  /* Style Text button */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.flex-row-item {
+  display: flex;
+  flex-direction: row;
+}
+
+#fetch {
+  width: 50%;
+  color: #f1e5e6;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: var(--button-color);
+  border: none;
+  cursor: pointer;
+}
+
+#fetch:hover {
+  background-color: var(--button-hover-color);
+}

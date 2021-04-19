@@ -1,0 +1,1 @@
+[16:02:42] [INFO]: request at '/api/scan', type: 'GET'

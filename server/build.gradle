@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.json', name: 'json', version: '20210307'
+    implementation group: 'com.sparkjava', name: 'spark-core', version: '2.9.3'
+    implementation group: 'com.neovisionaries', name: 'nv-i18n', version: '1.27'
+    implementation group: 'net.sf.sevenzipjbinding', name: 'sevenzipjbinding', version: '16.02-2.01'
+    implementation group: 'net.sf.sevenzipjbinding', name: 'sevenzipjbinding-all-platforms', version: '16.02-2.01'
+
+    implementation group: 'org.tinylog', name: 'tinylog-api', version: '2.3.0-M2'
+    implementation group: 'org.tinylog', name: 'tinylog-impl', version: '2.3.0-M2'
+}
