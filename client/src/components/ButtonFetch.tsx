@@ -10,7 +10,6 @@ interface IProps {
 }
 
 const API_URL = process.env.REACT_APP_API_URL;
-console.log(process.env)
 
 export const ButtonFetch: React.FC<IProps> = ({ files, lang, onFetch }) => {
 
@@ -21,7 +20,6 @@ export const ButtonFetch: React.FC<IProps> = ({ files, lang, onFetch }) => {
             const op_na = await hash_opensubtitles_napisy24(file);
 
             const url = `${API_URL}/scan?opensubtitles.org=${op_na}&napisy24.pl=${op_na}&napiprojekt.pl${napi}&fs=${file.size}&ln=${lang}`
-            console.log(url)
             let res =  await fetch(url).then(res => res.json())
 
             let subs = []

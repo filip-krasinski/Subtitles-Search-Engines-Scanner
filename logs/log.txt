@@ -1,5 +1,0 @@
-[02:53:31] [INFO]: request at '/api/scan', type: 'GET'
-[02:53:46] [INFO]: request at '/api/scan', type: 'GET'
-[02:54:36] [INFO]: request at '/api/scan', type: 'GET'
-[02:54:49] [INFO]: request at '/api/scan', type: 'GET'
-[02:55:45] [INFO]: request at '/api/scan', type: 'GET'
