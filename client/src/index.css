@@ -118,12 +118,6 @@ tr {
   background-color: var(--button-hover-color);
 }
 
-
-
-
-
-
-
 /* Language Input */
 
 .select-btn-streaming {
@@ -139,23 +133,12 @@ select {
   cursor: pointer;
 }
 
-/* Register */
-.button_register input {
-  display: block;
-  margin-top:  20px;
-  width: 100%;
-  max-width: 30% !important;
-  height: 50px;
-  color: white;
-  /* Style Text button */
-  font-size: 18px;
-  font-weight: bold;
-}
-
 .flex-row-item {
   display: flex;
   flex-direction: row;
 }
+
+
 
 #fetch {
   width: 50%;
@@ -165,8 +148,41 @@ select {
   background-color: var(--button-color);
   border: none;
   cursor: pointer;
+  position: relative;
 }
 
-#fetch:hover {
+
+#fetch:hover, #fetch .fetch-loading {
   background-color: var(--button-hover-color);
+}
+
+.fetch-text {
+  color: #ffffff;
+  transition: all 0.2s;
+}
+
+.fetch-loading .fetch-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.fetch-loading::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+}
+
+@keyframes button-loading-spinner {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }

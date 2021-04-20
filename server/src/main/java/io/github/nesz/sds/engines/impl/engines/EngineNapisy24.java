@@ -21,6 +21,7 @@ import java.util.*;
 public class EngineNapisy24 implements Engine {
 
 
+    private static final Set<String> SUPPORTED_LANGUAGES = new HashSet<>(Arrays.asList("pl"));
     private static final String UA = "tantalosus";
     private static final String AP = "susolatnat";
     private static final String HOST = "napisy24.pl";
@@ -32,12 +33,12 @@ public class EngineNapisy24 implements Engine {
 
     @Override
     public Set<String> getSupportedLanguages() {
-        return new HashSet<>();
+        return new HashSet<>(SUPPORTED_LANGUAGES);
     }
 
     @Override
     public boolean supports(String lang) {
-        return true;
+        return SUPPORTED_LANGUAGES.isEmpty() || SUPPORTED_LANGUAGES.contains(lang);
     }
 
 

@@ -32,7 +32,7 @@ public class EngineNapiprojekt implements Engine {
 
     @Override
     public Set<String> getSupportedLanguages() {
-        return SUPPORTED_LANGUAGES;
+        return new HashSet<>(SUPPORTED_LANGUAGES);
     }
 
     @Override

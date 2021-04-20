@@ -13,9 +13,16 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export const ButtonFetch: React.FC<IProps> = ({ files, lang, onFetch }) => {
 
-    const fetchData = async() => {
-        for (let i = 0; i < files.length; ++i) {
-            const file = files[i];
+    const fetchData = async(e: React.MouseEvent<HTMLButtonElement>) => {
+        let target = e.currentTarget as HTMLButtonElement
+
+        if (target.classList.contains('fetch-loading')) {
+            return;
+        }
+
+        target.classList.toggle('fetch-loading')
+
+        for (const file of files) {
             const hash_napi   = await hash_napiprojekt(file);
             const hash_os_n24 = await hash_opensubtitles_napisy24(file);
 
@@ -30,12 +37,17 @@ export const ButtonFetch: React.FC<IProps> = ({ files, lang, onFetch }) => {
 
             onFetch([new SubtitlesModel(file.name, res.host, res.size, res.ext, res.data)])
         }
+
+        target.classList.toggle('fetch-loading');
     }
 
     return (
         <>
-            <button id="fetch" onClick={fetchData}>
-                <RiFindReplaceLine /> find
+            <button id="fetch"
+                    onClick={(e) => fetchData(e)}>
+                <span className="fetch-text">
+                    <RiFindReplaceLine /> find
+                </span>
             </button>
         </>
     )

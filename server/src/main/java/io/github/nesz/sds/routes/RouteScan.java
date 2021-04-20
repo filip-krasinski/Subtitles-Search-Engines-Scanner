@@ -36,7 +36,6 @@ public class RouteScan implements Route {
             return jsonResponse.put("ERROR", "param 'fs' is not valid number").toString();
 
         Locale locale = new Locale(lnParam);
-        System.out.println(locale);
 
         JSONObject json = new JSONObject();
         for (Engine engine : EngineService.INSTANCE.getEngines()) {

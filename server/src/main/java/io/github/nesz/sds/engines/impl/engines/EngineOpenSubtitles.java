@@ -22,13 +22,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class EngineOpenSubtitles implements Engine {
 
+    private static final Set<String> SUPPORTED_LANGUAGES = new HashSet<>();
     private static final String AGENT = "TemporaryUserAgent";
     private static final String HOST = "opensubtitles.org";
 
@@ -39,12 +37,12 @@ public class EngineOpenSubtitles implements Engine {
 
     @Override
     public Set<String> getSupportedLanguages() {
-        return null;
+        return new HashSet<>(SUPPORTED_LANGUAGES);
     }
 
     @Override
     public boolean supports(String lang) {
-        return true;
+        return SUPPORTED_LANGUAGES.isEmpty() || SUPPORTED_LANGUAGES.contains(lang);
     }
 
 
