@@ -3,10 +3,7 @@ package io.github.nesz.sds.routes;
 import io.github.nesz.sds.engines.Engine;
 import io.github.nesz.sds.engines.EngineResponse;
 import io.github.nesz.sds.engines.EngineService;
-import org.eclipse.jetty.http.HttpHeader;
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.tinylog.Logger;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -26,11 +23,7 @@ public class RouteScan implements Route {
         String language = request.queryParams("ln");
         Locale locale = new Locale(language);
 
-        //request.queryParams().forEach(k ->
-        //        Logger.info(k + " = " + request.queryParams(k))
-        //);
-
-        JSONArray array = new JSONArray();
+        JSONObject json = new JSONObject();
         for (Engine engine : EngineService.INSTANCE.getEngines()) {
             String hash = request.queryParams(engine.getHost());
             if (hash == null) continue;
@@ -39,16 +32,14 @@ public class RouteScan implements Route {
             Optional<EngineResponse> maybeFetch = engine.fetch(locale, hash, fileSize);
             if (maybeFetch.isPresent()) {
                 EngineResponse fetch = maybeFetch.get();
-                JSONObject json = new JSONObject();
                 json.put("host",  engine.getHost());
                 json.put("ext", fetch.getExtension());
                 json.put("size", fetch.getData().length);
                 json.put("data", Base64.getEncoder().encodeToString(fetch.getData()));
-                array.put(json);
                 break;
             }
         }
 
-        return array.toString();
+        return json.toString();
     }
 }

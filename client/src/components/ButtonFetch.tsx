@@ -16,18 +16,19 @@ export const ButtonFetch: React.FC<IProps> = ({ files, lang, onFetch }) => {
     const fetchData = async() => {
         for (let i = 0; i < files.length; ++i) {
             const file = files[i];
-            const napi  = await hash_napiprojekt(file);
-            const op_na = await hash_opensubtitles_napisy24(file);
+            const hash_napi   = await hash_napiprojekt(file);
+            const hash_os_n24 = await hash_opensubtitles_napisy24(file);
 
-            const url = `${API_URL}/scan?opensubtitles.org=${op_na}&napisy24.pl=${op_na}&napiprojekt.pl${napi}&fs=${file.size}&ln=${lang}`
-            let res =  await fetch(url).then(res => res.json())
+            const url = new URL(`${API_URL}/scan`)
+            url.searchParams.append("opensubtitles.org", hash_os_n24!);
+            url.searchParams.append("napiprojekt.pl", hash_napi!);
+            url.searchParams.append("napisy24.pl", hash_os_n24!);
+            url.searchParams.append("fs", String(file.size));
+            url.searchParams.append("ln", lang);
 
-            let subs = []
-            for (let j = 0; j < res.length; ++j) {
-                subs.push(new SubtitlesModel(file.name, res[j].host, res[j].size, res[j].ext, res[j].data))
-            }
+            const res =  await fetch(url.toString()).then(res => res.json())
 
-            onFetch(subs)
+            onFetch([new SubtitlesModel(file.name, res.host, res.size, res.ext, res.data)])
         }
     }
 

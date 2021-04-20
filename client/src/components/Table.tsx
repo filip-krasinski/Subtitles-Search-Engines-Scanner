@@ -1,3 +1,4 @@
+import React from "react";
 import { Row } from './Row'
 import SubtitlesModel from "../model/SubtitlesModel";
 
