@@ -1,4 +1,4 @@
-import { isoLangs } from "../languages";
+import { isoLangs } from "../../languages.json";
 import React, {ChangeEvent, useEffect, useState} from "react";
 
 interface IProps {
@@ -30,9 +30,9 @@ export const DropdownLanguage: React.FC<IProps> = ({ onSelect }) => {
                 onChange={(e) => onChange(e)}
             >
             {
-                isoLangs.map(language =>
-                    <option key={language.code} value={language.code}>
-                        {language.nativeName}
+                isoLangs.map(lang =>
+                    <option key={lang.code} value={lang.code}>
+                        {lang.nativeName}
                     </option>
                 )
             }

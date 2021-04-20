@@ -1,8 +1,8 @@
 import md5 from 'md5'
 import Long from 'long'
+import React from "react"
 import { RiFindReplaceLine } from 'react-icons/ri'
-import React from "react";
-import SubtitlesModel from "../model/SubtitlesModel";
+import SubtitlesModel from "../model/SubtitlesModel"
 
 interface IProps {
     files: Array<File>
@@ -73,8 +73,8 @@ const toHexString = (byteArray: number[]): string => {
 
 const computeHashForChunk = (buffer: DataView): Long => {
     let hash = Long.fromInt(0);
-    for (let i = 0; i < 8192; ++i) {
-        let o = buffer.getBigInt64(i * 8, true);
+    for (let i = 0; i < buffer.byteLength; i += 8) {
+        let o = buffer.getBigInt64(i, true);
         hash = hash.add(Long.fromString(o.toString()))
     }
     return hash;
