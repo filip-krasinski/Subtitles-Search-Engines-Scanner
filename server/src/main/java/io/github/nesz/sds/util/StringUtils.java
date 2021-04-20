@@ -13,4 +13,12 @@ public final class StringUtils {
                 .orElse(def);
     }
 
+    public static Optional<Long> longFromString(String parse) {
+        try {
+            return Optional.of(Long.parseLong(parse));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
+
 }

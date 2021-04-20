@@ -5,7 +5,7 @@ import { ButtonFetch } from "./components/ButtonFetch";
 import { DropdownLanguage } from "./components/DropdownLanguage";
 import SubtitlesModel from "./model/SubtitlesModel";
 
-function App() {
+const App = () => {
   const [lang,  setLang]  = useState<string>("en")
   const [files, setFiles] = useState<Array<File>>([])
   const [subs,  setSubs]  = useState<Array<SubtitlesModel>>([])
@@ -46,4 +46,4 @@ function App() {
 
 }
 
-export default App;
+export default App
