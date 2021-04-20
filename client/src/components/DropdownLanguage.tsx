@@ -1,4 +1,4 @@
-import { isoLangs } from "../../languages.json";
+import { isoLangs } from "../languages.json";
 import React, {ChangeEvent, useEffect, useState} from "react";
 
 interface IProps {
