@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'io.github.nesz.sds'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -18,4 +18,17 @@ dependencies {
 
     implementation group: 'org.tinylog', name: 'tinylog-api', version: '2.3.0-M2'
     implementation group: 'org.tinylog', name: 'tinylog-impl', version: '2.3.0-M2'
+}
+
+jar {
+    baseName("${project.name}")
+    manifest {
+        attributes 'Main-Class': 'io.github.nesz.sds.SDS'
+        attributes 'Implementation-Version': project.version
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
 }

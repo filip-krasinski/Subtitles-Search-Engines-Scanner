@@ -8,7 +8,6 @@ import io.github.nesz.sds.util.archive.ArchiveEntry;
 import io.github.nesz.sds.util.archive.ArchiveUtils;
 import org.tinylog.Logger;
 
-import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.http.HttpClient;

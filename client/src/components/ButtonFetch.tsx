@@ -33,7 +33,12 @@ export const ButtonFetch: React.FC<IProps> = ({ files, lang, onFetch }) => {
             url.searchParams.append("fs", String(file.size));
             url.searchParams.append("ln", lang);
 
-            const res =  await fetch(url.toString()).then(res => res.json())
+            const res =  await fetch(url.toString())
+                .then(res => res.json())
+
+            if (!res || Object.keys(res).length === 0) {
+                continue;
+            }
 
             onFetch([new SubtitlesModel(file.name, res.host, res.size, res.ext, res.data)])
         }

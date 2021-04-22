@@ -8,25 +8,27 @@ interface IProps {
 
 export const Table: React.FC<IProps> = ({subs}) => {
     return (
-        <table>
-            <thead>
-            <tr>
-                <th key="name">FILE</th>
-                <th key="host">HOST</th>
-                <th key="size">SIZE</th>
-                <th key="ext">EXT</th>
-                <th key="dwn">DOWNLOAD</th>
-            </tr>
-            </thead>
-            {subs ? (
-                <tbody>
-                {subs.map((sub, index) =>
-                    <tr key={index}>
-                        <Row subtitles={sub}/>
+        <>
+            {subs.length > 0 ? (
+                <table>
+                    <thead>
+                    <tr>
+                        <th key="name">FILE</th>
+                        <th key="host">HOST</th>
+                        <th key="size">SIZE</th>
+                        <th key="ext">EXT</th>
+                        <th key="dwn">DOWNLOAD</th>
                     </tr>
-                )}
-                </tbody>
-            ) : null}
-        </table>
+                    </thead>
+                    <tbody>
+                    {subs.map((sub, index) =>
+                        <tr key={index} className="active">
+                            <Row subtitles={sub}/>
+                        </tr>
+                    )}
+                    </tbody>
+                </table>
+            ) : null }
+        </>
     )
 }

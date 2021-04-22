@@ -22,7 +22,10 @@ public class SDS {
         path("/api", () -> {
 
             before("/*", (req, res) ->
-                    Logger.info("request at '{}', type: '{}'", req.pathInfo(), req.requestMethod()));
+                    Logger.info("request from '{}' at '{}', type: '{}'",
+                            req.ip(),
+                            req.pathInfo(),
+                            req.requestMethod()));
 
             get("/scan", new RouteScan());
 

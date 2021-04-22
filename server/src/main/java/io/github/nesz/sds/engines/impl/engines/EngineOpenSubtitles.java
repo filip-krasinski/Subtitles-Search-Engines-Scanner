@@ -1,14 +1,9 @@
 package io.github.nesz.sds.engines.impl.engines;
 
 import com.neovisionaries.i18n.LanguageAlpha3Code;
-import io.github.nesz.sds.FormDataBuilder;
 import io.github.nesz.sds.UrlBuilder;
 import io.github.nesz.sds.engines.Engine;
 import io.github.nesz.sds.engines.EngineResponse;
-import io.github.nesz.sds.util.BytesUtils;
-import io.github.nesz.sds.util.archive.ArchiveEntry;
-import io.github.nesz.sds.util.archive.ArchiveUtils;
-import org.eclipse.jetty.http.HttpHeader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.tinylog.Logger;
@@ -16,13 +11,15 @@ import org.tinylog.Logger;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.Set;
 
 public class EngineOpenSubtitles implements Engine {
 
@@ -48,6 +45,10 @@ public class EngineOpenSubtitles implements Engine {
 
     @Override
     public Optional<EngineResponse> fetch(Locale locale, String hash, long fileSize) {
+        LanguageAlpha3Code alpha3 = LanguageAlpha3Code.getByCode(locale.getLanguage());
+        if (alpha3 == null)
+            return Optional.empty();
+
         HttpRequest request = UrlBuilder.newBuilder()
                 .scheme("https")
                 .host("rest.opensubtitles.org")
@@ -55,7 +56,7 @@ public class EngineOpenSubtitles implements Engine {
                 .path("dl.php")
                 .path("moviehash-" + hash)
                 .path("moviebytesize-" + fileSize)
-                .path("sublanguageid-" + LanguageAlpha3Code.getByCode(locale.getLanguage()).toString())
+                .path("sublanguageid-" + alpha3)
                 .toRequestBuilder()
                 .setHeader("User-Agent", AGENT)
                 .timeout(Duration.of(5, ChronoUnit.SECONDS))
