@@ -1,14 +1,14 @@
-import { isoLangs } from "../languages.json";
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { isoLangs } from '../languages.json';
 
 interface IProps {
     onSelect: (language: string) => void
 }
 
-export const DropdownLanguage: React.FC<IProps> = ({ onSelect }) => {
-    const [defaultLang,  setLang]  = useState<string>("en")
+export const DropdownLanguage: React.FC<IProps> = ({onSelect}) => {
+    const [defaultLang, setLang] = useState<string>('en')
 
-    const onChange = (e: ChangeEvent<HTMLSelectElement> ) => {
+    const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setLang(e.target.value)
         onSelect(e.target.value)
     }
@@ -24,18 +24,18 @@ export const DropdownLanguage: React.FC<IProps> = ({ onSelect }) => {
     }, [])
 
     return (
-        <div className="select-btn-streaming">
+        <div className='select-btn-streaming'>
             <select
                 value={defaultLang}
                 onChange={(e) => onChange(e)}
             >
-            {
-                isoLangs.map(lang =>
-                    <option key={lang.code} value={lang.code}>
-                        {lang.nativeName}
-                    </option>
-                )
-            }
+                {
+                    isoLangs.map(lang =>
+                        <option key={lang.code} value={lang.code}>
+                            {lang.nativeName}
+                        </option>
+                    )
+                }
             </select>
         </div>
     )

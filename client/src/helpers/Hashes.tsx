@@ -1,8 +1,16 @@
-import md5 from "md5";
-import Long from "long";
+import md5 from 'md5';
+import Long from 'long';
 
+export const u_atob = (ascii: string): Uint8Array => {
+    return Uint8Array.from(atob(ascii), c => c.charCodeAt(0));
+}
 
-export const hash_napiprojekt = async(file: Blob): Promise<string | null> => {
+export const base64_to_string = (data: string) => {
+    return new TextDecoder('CP1250')
+        .decode(u_atob(data));
+}
+
+export const hash_napiprojekt = async (file: Blob): Promise<string | null> => {
     let size = Math.min(1024 * 1024 * 10, file.size);
     let bytes = await readBytes(file, 0, size);
     if (bytes == null) {
@@ -11,7 +19,7 @@ export const hash_napiprojekt = async(file: Blob): Promise<string | null> => {
     return md5(new Uint8Array(bytes))
 }
 
-export const hash_opensubtitles_napisy24 = async(file: Blob): Promise<string | null> => {
+export const hash_opensubtitles_napisy24 = async (file: Blob): Promise<string | null> => {
     const chunkSize = 65536;
     const size = file.size;
     const offset = Math.max(size - chunkSize, 0);
@@ -30,7 +38,7 @@ export const hash_opensubtitles_napisy24 = async(file: Blob): Promise<string | n
 }
 
 const toHexString = (byteArray: number[]): string => {
-    return Array.from(byteArray, function(byte) {
+    return Array.from(byteArray, function (byte) {
         return ('0' + (byte & 0xFF).toString(16)).slice(-2);
     }).join('')
 }
@@ -45,7 +53,7 @@ const computeHashForChunk = (buffer: DataView): Long => {
     return hash;
 }
 
-export const readBytes = (data: Blob, start: number, end: number): Promise<ArrayBuffer | null > => {
+export const readBytes = (data: Blob, start: number, end: number): Promise<ArrayBuffer | null> => {
     let reader = new FileReader();
     data = data.slice(start, end)
 

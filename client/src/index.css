@@ -1,188 +1,209 @@
 :root {
-  --bg-primary: #090C11;
-  --bg-secondary: #0D1017;
-  --bg-quaternary: #0f1218;
-  --outline-color: #34373E;
-  --button-color: #d3394c;
-  --button-hover-color: #722040;
-  --text-color: #c9d1d9;
+    --bg-primary: #090C11;
+    --bg-secondary: #0D1017;
+    --bg-quaternary: #0f1218;
+    --outline-color: #34373E;
+    --button-color: #d3394c;
+    --button-hover-color: #722040;
+    --text-color: #c9d1d9;
 }
 
 
 body, #root {
-  margin: 0;
-  background-color: var(--bg-primary);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  font-size: 22px;
-  height: 100vh;
+    margin: 0;
+    background-color: var(--bg-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-size: 22px;
+    height: 100vh;
 }
 
 
 .flex-container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .flex-item {
-  padding: 5px;
-  margin: 10px;
-  text-align: center;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
 }
 
 
 table {
-  border: 1px solid var(--outline-color);
-  color: var(--text-color);
-  text-align: center;
+    border: 1px solid var(--outline-color);
+    color: var(--text-color);
+    text-align: center;
 }
 
 thead {
-  font-weight : bold;
+    font-weight: bold;
 }
 
 th, td {
-  width: auto;
-  padding:5px;
+    width: auto;
+    padding: 5px;
 }
 
 thead tr {
-  background-color: var(--bg-secondary);
+    background-color: var(--bg-secondary);
 }
 
 
 tr {
-  background-color: var(--bg-quaternary);
+    background-color: var(--bg-quaternary);
 }
 
 .wrapper {
-  min-height : 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .inputfile {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 .inputfile + label {
-  max-width: 80%;
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
-  display: inline-block;
-  overflow: hidden;
-  padding: 0.625rem 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    max-width: 80%;
+    font-size: 1.25rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
 }
 
 .no-js .inputfile + label {
-  display: none;
+    display: none;
 }
 
 .inputfile:focus + label,
 .inputfile.has-focus + label {
-  outline: 1px dotted #000;
-  outline: -webkit-focus-ring-color auto 5px;
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
 }
 
 .inputfile + label svg {
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-  fill: currentColor;
-  margin-top: -0.25em;
-  margin-right: 0.25em;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
 }
 
 .inputfile + label {
-  color: #f1e5e6;
-  background-color: var(--button-color);
+    color: #f1e5e6;
+    background-color: var(--button-color);
 }
 
 .inputfile:focus + label,
 .inputfile.has-focus + label,
 .inputfile + label:hover {
-  background-color: var(--button-hover-color);
+    background-color: var(--button-hover-color);
 }
 
 /* Language Input */
 
 .select-btn-streaming {
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
 
 }
 
 select {
-  padding: 0.8em 0.5em;
-  width: 100%;
-  cursor: pointer;
+    padding: 0.8em 0.5em;
+    width: 100%;
+    cursor: pointer;
 }
 
 .flex-row-item {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+}
+
+.button-fetch {
+    width: 50%;
+    color: #f1e5e6;
+    font-size: 1.25rem;
+    font-weight: 700;
+    background-color: var(--button-color);
+    border: none;
+    cursor: pointer;
+    position: relative;
 }
 
 
-
-#fetch {
-  width: 50%;
-  color: #f1e5e6;
-  font-size: 1.25rem;
-  font-weight: 700;
-  background-color: var(--button-color);
-  border: none;
-  cursor: pointer;
-  position: relative;
+.button-fetch:hover, .button-fetch .button-fetch-loading {
+    background-color: var(--button-hover-color);
 }
 
-
-#fetch:hover, #fetch .fetch-loading {
-  background-color: var(--button-hover-color);
+.button-fetch-text {
+    color: #ffffff;
+    transition: all 0.2s;
 }
 
-.fetch-text {
-  color: #ffffff;
-  transition: all 0.2s;
+.button-fetch-loading .button-fetch-text {
+    visibility: hidden;
+    opacity: 0;
 }
 
-.fetch-loading .fetch-text {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.fetch-loading::after {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border: 4px solid transparent;
-  border-top-color: #ffffff;
-  border-radius: 50%;
-  animation: button-loading-spinner 1s ease infinite;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  position: absolute;
+.button-fetch-loading::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
 }
 
 @keyframes button-loading-spinner {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.button-download {
+    font-size: 1.25rem;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    color: #f1e5e6;
+    background: var(--button-color);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.button-download:hover {
+    background: var(--button-hover-color);
+}
+
+.button-download-single {
+    padding: 10px;
 }

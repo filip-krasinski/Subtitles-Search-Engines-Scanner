@@ -1,13 +1,15 @@
+import React from 'react';
 import prettyBytes from 'pretty-bytes'
+import SubtitlesModel from '../model/SubtitlesModel';
+import { base64_to_string } from '../helpers/Hashes';
+import { download } from '../helpers/Downloader';
 import { RiDownloadFill } from 'react-icons/ri'
-import React from "react";
-import SubtitlesModel from "../model/SubtitlesModel";
 
 interface IProps {
     subtitles: SubtitlesModel
 }
 
-export const Row: React.FC<IProps> = ({ subtitles}) => {
+export const Row: React.FC<IProps> = ({subtitles}) => {
     return (
         <>
             <td>{subtitles.name}</td>
@@ -15,26 +17,17 @@ export const Row: React.FC<IProps> = ({ subtitles}) => {
             <td>{prettyBytes(subtitles.size)}</td>
             <td>{subtitles.ext}</td>
             <td>
-                <button id="download">
+                <button className={'button-download'}>
                     <RiDownloadFill onClick={
-                        () => downloadTxtFile(subtitles.name, subtitles.ext, subtitles.data)
-                    } />
+                        () => {
+                            const name = `${subtitles.name}.${subtitles.ext}`
+                            const decoded = base64_to_string(subtitles.data)
+                            const out = new Blob([decoded], {type: 'text/plain'});
+                            download(name, out);
+                        }
+                    }/>
                 </button>
             </td>
         </>
     )
-}
-
-const u_atob = (ascii: string): Uint8Array => {
-    return Uint8Array.from(atob(ascii), c => c.charCodeAt(0));
-}
-
-const downloadTxtFile = (filename: string, ext: string, data: string): void => {
-    const element = document.createElement("a");
-    const string = new TextDecoder("CP1250").decode(u_atob(data))
-    const file = new Blob([string], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download = `${filename}.${ext}`;
-    document.body.appendChild(element);
-    element.click();
 }
