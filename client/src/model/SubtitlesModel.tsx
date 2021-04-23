@@ -1,13 +1,16 @@
 export default class SubtitlesModel {
 
     name: string
-    host: string
-    size: number
-    ext: string
-    data: string
+    host: string | undefined
+    size: number | undefined
+    ext:  string | undefined
+    data: string | undefined
 
-
-    constructor(name: string, host: string, size: number, ext: string, data: string) {
+    constructor(name: string,
+                host: string | undefined,
+                size: number | undefined,
+                ext:  string | undefined,
+                data: string | undefined) {
         this.name = name;
         this.host = host;
         this.size = size;

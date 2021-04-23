@@ -12,22 +12,29 @@ interface IProps {
 export const Row: React.FC<IProps> = ({subtitles}) => {
     return (
         <>
-            <td>{subtitles.name}</td>
-            <td>{subtitles.host}</td>
-            <td>{prettyBytes(subtitles.size)}</td>
-            <td>{subtitles.ext}</td>
+            <td>{limit(subtitles.name, 64)}</td>
+            <td>{subtitles.host ?? '-'}</td>
+            <td>{subtitles.size ? prettyBytes(subtitles.size) : '-'}</td>
+            <td>{subtitles.ext ?? '-'}</td>
             <td>
-                <button className={'button-download'}>
-                    <RiDownloadFill onClick={
-                        () => {
-                            const name = `${subtitles.name}.${subtitles.ext}`
-                            const decoded = base64_to_string(subtitles.data)
-                            const out = new Blob([decoded], {type: 'text/plain'});
-                            download(name, out);
-                        }
-                    }/>
-                </button>
+                {subtitles.data ? (
+                    <button className={'button-download'}>
+                            <RiDownloadFill onClick={
+                                () => {
+                                    const name = `${subtitles.name}.${subtitles.ext}`
+                                    const decoded = base64_to_string(subtitles.data!)
+                                    const out = new Blob([decoded], {type: 'text/plain'});
+                                    download(name, out);
+                                }
+                            }
+                            />
+                    </button>
+                ) : '-'}
             </td>
         </>
     )
+}
+
+const limit = (text: string, chars: number) => {
+    return text.slice(0, chars) + (text.length > chars ? "..." : "");
 }

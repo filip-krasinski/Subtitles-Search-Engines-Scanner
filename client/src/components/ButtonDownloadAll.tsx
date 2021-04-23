@@ -11,10 +11,12 @@ interface IProps {
 const zipFiles = (subtitles: Array<SubtitlesModel>): Promise<Blob> => {
     const zip = new JSZip();
     for (const subs of subtitles) {
-        const name = `${subs.name}.${subs.ext}`
-        const decoded = base64_to_string(subs.data)
-        const out = new Blob([decoded], {type: 'text/plain'});
-        zip.file(name, out)
+        if (subs.data) {
+            const name = `${subs.name}.${subs.ext}`
+            const decoded = base64_to_string(subs.data)
+            const out = new Blob([decoded], {type: 'text/plain'});
+            zip.file(name, out)
+        }
     }
 
     return zip.generateAsync({type: 'blob'})
