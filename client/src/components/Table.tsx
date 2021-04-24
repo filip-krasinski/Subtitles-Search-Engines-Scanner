@@ -4,9 +4,16 @@ import SubtitlesModel from '../model/SubtitlesModel';
 
 interface IProps {
     subs: Array<SubtitlesModel>
+    page: number
+    subsPerPage: number
 }
 
-export const Table: React.FC<IProps> = ({subs}) => {
+export const Table: React.FC<IProps> = ({subs, page , subsPerPage}) => {
+
+    const lastPage = page * subsPerPage
+    const firstPage = lastPage - subsPerPage
+    const currentSubs = subs.slice(firstPage, lastPage)
+
     return (
         <>
 
@@ -21,7 +28,7 @@ export const Table: React.FC<IProps> = ({subs}) => {
                 </tr>
                 </thead>
                 <tbody>
-                {subs.map((sub, index) =>
+                {currentSubs.map((sub, index) =>
                     <tr key={index} className='active'>
                         <Row subtitles={sub}/>
                     </tr>

@@ -207,3 +207,20 @@ select {
 .button-download-single {
     padding: 10px;
 }
+
+.pagination-button {
+    background: var(--button-color);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 3px 8px 3px 8px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+.pagination-button-active {
+    background: var(--button-hover-color);
+    cursor: default;
+}
+.pagination-button:hover {
+    background: var(--button-hover-color);
+}
